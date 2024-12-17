@@ -7,13 +7,18 @@ const vehicaleRote = require('./routers/VehicaleRoute');
 
 const app = express();
 
-app.use(cors(
-    {
-        credentials:true,
-        origin:'http://localhost:5173'
-    }
-))
+const allowedOrigins = ['http://localhost:5173', 'https://causewaymy.web.app/', 'https://causeway.my' , 'https://www.causewaymy.web.app/'];
 
+app.use(cors({
+    credentials: true,
+    origin: (origin, callback) => {
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true); // Allow the request
+        } else {
+            callback(new Error('Not allowed by CORS')); // Reject the request
+        }
+    }
+}));
 
 // Routers
 app.use('/api/vehicale', vehicaleRote);
