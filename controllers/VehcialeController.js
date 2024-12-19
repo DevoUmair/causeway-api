@@ -63,4 +63,19 @@ const getAllVehicaleFeatures = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { getAllVehicaleTypes , getAllVehicales , getAllVehicalesClasses , getAllVehicaleFeatures };
+//@DESC Get All Location
+//@Router GET /api/getAllLocation
+//@access Private
+const getAllLocation = asyncHandler(async (req, res) => {
+    try {
+        const response = await hqApi.get('fleets/locations');
+        res.status(200).json(response.data.fleets_locations);
+    } catch (error) {
+        console.error('Error fetching  location :', error);
+        res.status(error.response?.status || 500).json({
+            message: error.response?.data?.message || 'Failed to fetch location',
+        });
+    }
+});
+
+module.exports = { getAllVehicaleTypes , getAllVehicales , getAllVehicalesClasses , getAllVehicaleFeatures , getAllLocation };

@@ -3,7 +3,8 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors')
 
-const vehicaleRote = require('./routers/VehicaleRoute'); 
+const vehicaleRoute = require('./routers/VehicaleRoute'); 
+const reserationRoute = require('./routers/ReservationRoute'); 
 
 const app = express();
 
@@ -21,7 +22,8 @@ app.use(cors({
 }));
 
 // Routers
-app.use('/api/vehicale', vehicaleRote);
+app.use('/api/vehicale', vehicaleRoute);
+app.use('/api/reservation', reserationRoute);
 
 const port = process.env.PORT || 5100
 
