@@ -13,9 +13,9 @@ const checkAvailabilityVehicles = asyncHandler(async (req, res) => {
         const response = await hqApi.get('car-rental/ota/availability/', {
             params: {
                 pick_up_date,
+                return_date,
                 pick_up_location_id,
                 return_location_id,
-                return_date,
             },
             headers: {
                 Accept: 'application/vnd.api.v2+json',

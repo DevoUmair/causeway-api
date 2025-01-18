@@ -8,7 +8,7 @@ const reserationRoute = require('./routers/ReservationRoute');
 
 const app = express();
 
-const allowedOrigins = ['http://localhost:5173', 'https://causewaymy.web.app', 'https://causeway.my' , 'https://www.causewaymy.web.app'];
+const allowedOrigins = ['http://localhost:5173', 'https://causewaymy.web.app', 'https://causeway.my' , 'https://www.causeway.my' , 'https://causewaymy.firebaseapp.com' ];
 
 app.use(cors({
     credentials: true,
