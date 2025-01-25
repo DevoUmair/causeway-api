@@ -78,4 +78,19 @@ const getAllLocation = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { getAllVehicaleTypes , getAllVehicales , getAllVehicalesClasses , getAllVehicaleFeatures , getAllLocation };
+//@DESC Get All Location
+//@Router GET /api/getAllAdditionalFeatures
+//@access Private
+const getAllAdditionalFeatures = asyncHandler(async (req, res) => {
+    try {
+        const response = await hqApi.get('fleets/additional-charges');
+        res.status(200).json(response.data.fleets_additional_charges);
+    } catch (error) {
+        console.error('Error fetching  additional features :', error);
+        res.status(error.response?.status || 500).json({
+            message: error.response?.data?.message || 'Failed to fetch location',
+        });
+    }
+});
+
+module.exports = { getAllVehicaleTypes , getAllVehicales , getAllVehicalesClasses , getAllVehicaleFeatures , getAllLocation , getAllAdditionalFeatures };
